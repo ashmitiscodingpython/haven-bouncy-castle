@@ -3,38 +3,54 @@
 [ext_resource type="TileSet" uid="uid://dxf3gya5ax8y1" path="res://tilesets/default.tres" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://bt320g28801i3" path="res://scripts/sprite_2d.gd" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://cnqqcl6p2nqe5" path="res://sprites/default/PNG/Default/character_roundRed.png" id="1_sugp2"]
+[ext_resource type="Script" uid="uid://t5vxisdhcbb8" path="res://scripts/camera.gd" id="4_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://15gurvcrsxsk" path="res://sprites/default/PNG/Default/tile_heart.png" id="5_tefeu"]
+[ext_resource type="PackedScene" uid="uid://blo00frddi8nm" path="res://scenes/coin.tscn" id="6_o6xl0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sugp2"]
 friction = 0.2
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sugp2"]
-points = PackedVector2Array(0, 30, -19, 11, -19, -12, -14, -24, -4, -30, 0, -30, 5, -30, 14, -24, 19, -14, 19, 10)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tefeu"]
+radius = 19.0
+height = 60.0
 
 [node name="Node2D" type="Node2D" unique_id=1724672546]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=659918952]
 texture_filter = 1
-tile_map_data = PackedByteArray("AAD8/wIAAQAFAAEAAAD9/wIAAQAFAAEAAAD+/wIAAQAFAAEAAAD//wIAAQAFAAEAAAAAAAIAAQAFAAEAAAABAAIAAQAFAAEAAAACAAIAAQAFAAEAAAADAAIAAQAFAAEAAAAEAAIAAQAFAAEAAAA=")
+tile_map_data = PackedByteArray("AAD8/wIAAQAEAAMAAAD8/wEAAQAEAAMAAAD8/wAAAQAEAAMAAAD8////AQAEAAMAAAD8//7/AQAEAAMAAAD8//3/AQAEAAMAAAD8//z/AQAEAAMAAAD8//v/AQAEAAMAAAD//wEAAQAGAAIAAAD8//r/AQAEAAMAAAD8//n/AQAEAAMAAAD8//j/AQAEAAMAAAD8//b/AQAEAAMAAAD8//X/AQAEAAMAAAD8//T/AQAEAAMAAAD8//P/AQAEAAMAAAD8//L/AQAEAAMAAAD8//H/AQAEAAMAAAD8//f/AQAEAAMAAAD8//D/AQAEAAMAAAD8/+//AQAEAAMAAAD8/+7/AQAEAAMAAAD8/+3/AQAEAAMAAAD8/+z/AQAEAAMAAAD8/+v/AQAEAAMAAAD8/+r/AQAEAAMAAAD8/+n/AQAEAAMAAAD8/+j/AQAEAAMAAAD8/+f/AQAEAAMAAAAFAAAAAQAGAAAAAAAHAP7/AQAFAAEAAAADAAEAAQAGAAEAAAAFAP//AQAGAAEAAAD9/wIAAQADAAcAAAD+/wIAAQADAAcAAAD//wIAAQADAAcAAAAAAAIAAQADAAcAAAABAAIAAQADAAcAAAACAAIAAQADAAcAAAADAAIAAQADAAcAAAAEAAIAAQADAAcAAAAFAAIAAQADAAcAAAAGAAIAAQADAAcAAAAHAAIAAQADAAcAAAAIAAIAAQADAAcAAAAJAAIAAQADAAcAAAAKAAIAAQADAAcAAAALAAIAAQADAAcAAAAMAAIAAQADAAcAAAANAAIAAQADAAcAAAAOAAIAAQADAAcAAAAPAAIAAQADAAcAAAAQAAIAAQADAAcAAAARAAIAAQADAAcAAAASAAIAAQADAAcAAAATAAIAAQADAAcAAAAUAAIAAQADAAcAAAAVAAIAAQADAAcAAAAWAAIAAQADAAcAAAAXAAIAAQADAAcAAAAYAAIAAQADAAcAAAAZAAIAAQADAAcAAAAaAAIAAQADAAcAAAAbAAIAAQADAAcAAAAcAAIAAQADAAcAAAAdAAIAAQADAAcAAAAeAAIAAQADAAcAAAAfAAIAAQADAAcAAAAgAAIAAQADAAcAAAAhAAIAAQADAAcAAAAiAAIAAQADAAcAAAAjAAIAAQADAAcAAAAkAAIAAQADAAcAAAAlAAIAAQADAAcAAAAmAAIAAQADAAcAAAAnAAIAAQADAAcAAAAoAAIAAQADAAcAAAApAAIAAQADAAcAAAAqAAIAAQADAAcAAAArAAIAAQADAAcAAAAsAAIAAQADAAcAAAAtAAIAAQADAAcAAAAuAAIAAQADAAcAAAAvAAIAAQADAAcAAAAwAAIAAQADAAcAAAAxAAIAAQADAAcAAAAyAAIAAQADAAcAAAAzAAIAAQADAAcAAAA0AAIAAQADAAcAAAA1AAIAAQADAAcAAAA2AAIAAQADAAcAAAA3AAIAAQADAAcAAAA4AAIAAQADAAcAAAA5AAIAAQADAAcAAAA6AAIAAQADAAcAAAA7AAIAAQADAAcAAAA=")
 tile_set = ExtResource("1_jyhfs")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1201443242]
-position = Vector2(0, -200)
+[node name="Character" type="RigidBody2D" parent="." unique_id=1201443242]
+position = Vector2(39, -142)
 physics_material_override = SubResource("PhysicsMaterial_sugp2")
 lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_o5qli")
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=329378142]
+[node name="Sprite2D" type="Sprite2D" parent="Character" unique_id=329378142]
 texture_filter = 3
 position = Vector2(0, -29)
 texture = ExtResource("1_sugp2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1198151635]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character" unique_id=2016052913]
 position = Vector2(0, -30)
-shape = SubResource("ConvexPolygonShape2D_sugp2")
+shape = SubResource("CapsuleShape2D_tefeu")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=300318510]
+script = ExtResource("4_jyhfs")
 
-[connection signal="body_entered" from="RigidBody2D" to="RigidBody2D" method="squish_"]
-[connection signal="body_exited" from="RigidBody2D" to="RigidBody2D" method="ground_left"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=419918701]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1063378849]
+texture_filter = 1
+position = Vector2(91.00001, 85.00001)
+scale = Vector2(1.67, 1.67)
+texture = ExtResource("5_tefeu")
+
+[node name="Coin" parent="." unique_id=1350407393 instance=ExtResource("6_o6xl0")]
+position = Vector2(652, 90)
+
+[connection signal="body_entered" from="Character" to="Character" method="squish_"]
+[connection signal="body_exited" from="Character" to="Character" method="ground_left"]
