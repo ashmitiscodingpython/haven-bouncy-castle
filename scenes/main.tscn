@@ -5,7 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://cnqqcl6p2nqe5" path="res://sprites/default/PNG/Default/character_roundRed.png" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://t5vxisdhcbb8" path="res://scripts/camera.gd" id="4_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://15gurvcrsxsk" path="res://sprites/default/PNG/Default/tile_heart.png" id="5_tefeu"]
+[ext_resource type="Texture2D" uid="uid://diut6yduq71uq" path="res://sprites/default/PNG/Default/tile_coin.png" id="6_85g3d"]
 [ext_resource type="PackedScene" uid="uid://blo00frddi8nm" path="res://scenes/coin.tscn" id="6_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://ma4mljghlimf" path="res://scenes/key.tscn" id="7_tipki"]
+[ext_resource type="PackedScene" uid="uid://ci7iv8nkong7m" path="res://scenes/text.tscn" id="7_ya4ey"]
+[ext_resource type="Script" uid="uid://cty7bu1t7unyf" path="res://scripts/bob.gd" id="8_85g3d"]
+[ext_resource type="Script" uid="uid://cm2d2bov4tsao" path="res://scripts/game_manager.gd" id="11_eb6dy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sugp2"]
 friction = 0.2
@@ -14,14 +19,14 @@ friction = 0.2
 radius = 19.0
 height = 60.0
 
-[node name="Node2D" type="Node2D" unique_id=1724672546]
+[node name="Node2D" type="Node2D" unique_id=1724672546 groups=["player"]]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=659918952]
 texture_filter = 1
-tile_map_data = PackedByteArray("AAD8/wIAAQAEAAMAAAD8/wEAAQAEAAMAAAD8/wAAAQAEAAMAAAD8////AQAEAAMAAAD8//7/AQAEAAMAAAD8//3/AQAEAAMAAAD8//z/AQAEAAMAAAD8//v/AQAEAAMAAAD//wEAAQAGAAIAAAD8//r/AQAEAAMAAAD8//n/AQAEAAMAAAD8//j/AQAEAAMAAAD8//b/AQAEAAMAAAD8//X/AQAEAAMAAAD8//T/AQAEAAMAAAD8//P/AQAEAAMAAAD8//L/AQAEAAMAAAD8//H/AQAEAAMAAAD8//f/AQAEAAMAAAD8//D/AQAEAAMAAAD8/+//AQAEAAMAAAD8/+7/AQAEAAMAAAD8/+3/AQAEAAMAAAD8/+z/AQAEAAMAAAD8/+v/AQAEAAMAAAD8/+r/AQAEAAMAAAD8/+n/AQAEAAMAAAD8/+j/AQAEAAMAAAD8/+f/AQAEAAMAAAAFAAAAAQAGAAAAAAAHAP7/AQAFAAEAAAADAAEAAQAGAAEAAAAFAP//AQAGAAEAAAD9/wIAAQADAAcAAAD+/wIAAQADAAcAAAD//wIAAQADAAcAAAAAAAIAAQADAAcAAAABAAIAAQADAAcAAAACAAIAAQADAAcAAAADAAIAAQADAAcAAAAEAAIAAQADAAcAAAAFAAIAAQADAAcAAAAGAAIAAQADAAcAAAAHAAIAAQADAAcAAAAIAAIAAQADAAcAAAAJAAIAAQADAAcAAAAKAAIAAQADAAcAAAALAAIAAQADAAcAAAAMAAIAAQADAAcAAAANAAIAAQADAAcAAAAOAAIAAQADAAcAAAAPAAIAAQADAAcAAAAQAAIAAQADAAcAAAARAAIAAQADAAcAAAASAAIAAQADAAcAAAATAAIAAQADAAcAAAAUAAIAAQADAAcAAAAVAAIAAQADAAcAAAAWAAIAAQADAAcAAAAXAAIAAQADAAcAAAAYAAIAAQADAAcAAAAZAAIAAQADAAcAAAAaAAIAAQADAAcAAAAbAAIAAQADAAcAAAAcAAIAAQADAAcAAAAdAAIAAQADAAcAAAAeAAIAAQADAAcAAAAfAAIAAQADAAcAAAAgAAIAAQADAAcAAAAhAAIAAQADAAcAAAAiAAIAAQADAAcAAAAjAAIAAQADAAcAAAAkAAIAAQADAAcAAAAlAAIAAQADAAcAAAAmAAIAAQADAAcAAAAnAAIAAQADAAcAAAAoAAIAAQADAAcAAAApAAIAAQADAAcAAAAqAAIAAQADAAcAAAArAAIAAQADAAcAAAAsAAIAAQADAAcAAAAtAAIAAQADAAcAAAAuAAIAAQADAAcAAAAvAAIAAQADAAcAAAAwAAIAAQADAAcAAAAxAAIAAQADAAcAAAAyAAIAAQADAAcAAAAzAAIAAQADAAcAAAA0AAIAAQADAAcAAAA1AAIAAQADAAcAAAA2AAIAAQADAAcAAAA3AAIAAQADAAcAAAA4AAIAAQADAAcAAAA5AAIAAQADAAcAAAA6AAIAAQADAAcAAAA7AAIAAQADAAcAAAA=")
+tile_map_data = PackedByteArray("AAD8/wIAAQAEAAMAAAD8/wEAAQAEAAMAAAD8/wAAAQAEAAMAAAD8////AQAEAAMAAAD8//7/AQAEAAMAAAD8//3/AQAEAAMAAAD8//z/AQAEAAMAAAD8//v/AQAEAAMAAAD//wEAAQAGAAIAAAD8//r/AQAEAAMAAAD8//n/AQAEAAMAAAD8//j/AQAEAAMAAAD8//b/AQAEAAMAAAD8//X/AQAEAAMAAAD8//T/AQAEAAMAAAD8//P/AQAEAAMAAAD8//L/AQAEAAMAAAD8//H/AQAEAAMAAAD8//f/AQAEAAMAAAD8//D/AQAEAAMAAAD8/+//AQAEAAMAAAD8/+7/AQAEAAMAAAD8/+3/AQAEAAMAAAD8/+z/AQAEAAMAAAD8/+v/AQAEAAMAAAD8/+r/AQAEAAMAAAD8/+n/AQAEAAMAAAD8/+j/AQAEAAMAAAD8/+f/AQAEAAMAAAAFAAAAAQAGAAAAAAAHAP7/AQADAAcAAAADAAEAAQAGAAEAAAAFAP//AQAGAAEAAAD9/wIAAQADAAcAAAD+/wIAAQADAAcAAAD//wIAAQADAAcAAAAAAAIAAQADAAcAAAABAAIAAQADAAcAAAACAAIAAQADAAcAAAADAAIAAQADAAcAAAAEAAIAAQADAAcAAAAFAAIAAQADAAcAAAAGAAIAAQADAAcAAAAHAAIAAQADAAcAAAAIAAIAAQADAAcAAAAJAAIAAQADAAcAAAAKAAIAAQADAAcAAAALAAIAAQADAAcAAAAMAAIAAQADAAcAAAANAAIAAQADAAcAAAAOAAIAAQAGAAAAAAAPAAIAAQAGAAAAAAAQAAIAAQAGAAAAAAARAAIAAQAGAAAAAAASAAIAAQAGAAAAAAATAAIAAQADAAcAAAAUAAIAAQADAAcAAAAVAAIAAQADAAcAAAAWAAIAAQADAAcAAAAXAAIAAQADAAcAAAAYAAIAAQADAAcAAAAZAAIAAQADAAcAAAAaAAIAAQADAAcAAAAbAAIAAQADAAcAAAAcAAIAAQADAAcAAAAdAAIAAQADAAcAAAAeAAIAAQADAAcAAAAfAAIAAQADAAcAAAAgAAIAAQADAAcAAAAhAAIAAQADAAcAAAAiAAIAAQADAAcAAAAjAAIAAQADAAcAAAAkAAIAAQADAAcAAAAlAAIAAQADAAcAAAAmAAIAAQADAAcAAAAnAAIAAQADAAcAAAAoAAIAAQADAAcAAAApAAIAAQADAAcAAAAqAAIAAQADAAcAAAArAAIAAQADAAcAAAAsAAIAAQADAAcAAAAtAAIAAQADAAcAAAAuAAIAAQADAAcAAAAvAAIAAQADAAcAAAAwAAIAAQADAAcAAAAxAAIAAQADAAcAAAAyAAIAAQADAAcAAAAzAAIAAQADAAcAAAA0AAIAAQADAAcAAAA1AAIAAQADAAcAAAA2AAIAAQADAAcAAAA3AAIAAQADAAcAAAA4AAIAAQADAAcAAAA5AAIAAQADAAcAAAA6AAIAAQADAAcAAAA7AAIAAQADAAcAAAARAP//AQAGAAAAAAASAP//AQAGAAAAAAATAP//AQAGAAAAAAAUAP3/AQAGAAAAAAAVAP3/AQAGAAAAAAAWAP3/AQAGAAAAAAAXAPv/AQAGAAAAAAAYAPv/AQAGAAAAAAAZAPv/AQAGAAAAAAAaAPv/AQAGAAAAAAAZAP3/AQAFAAUAAAAZAP7/AQAFAAUAAAAZAP//AQAFAAUAAAAZAAAAAQAFAAUAAAAZAAEAAQAFAAUAAAAcAP3/AQAAAAAAAAAdAP3/AQABAAAAAAA=")
 tile_set = ExtResource("1_jyhfs")
 
-[node name="Character" type="RigidBody2D" parent="." unique_id=1201443242]
+[node name="Character" type="RigidBody2D" parent="." unique_id=1201443242 groups=["player"]]
 position = Vector2(39, -142)
 physics_material_override = SubResource("PhysicsMaterial_sugp2")
 lock_rotation = true
@@ -29,12 +34,12 @@ contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_o5qli")
 
-[node name="Sprite2D" type="Sprite2D" parent="Character" unique_id=329378142]
+[node name="Sprite2D" type="Sprite2D" parent="Character" unique_id=329378142 groups=["player"]]
 texture_filter = 3
 position = Vector2(0, -29)
 texture = ExtResource("1_sugp2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character" unique_id=2016052913]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character" unique_id=2016052913 groups=["player"]]
 position = Vector2(0, -30)
 shape = SubResource("CapsuleShape2D_tefeu")
 
@@ -43,14 +48,35 @@ script = ExtResource("4_jyhfs")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=419918701]
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1063378849]
+[node name="Heart" type="Sprite2D" parent="CanvasLayer" unique_id=1063378849]
 texture_filter = 1
 position = Vector2(91.00001, 85.00001)
-scale = Vector2(1.67, 1.67)
+scale = Vector2(1.7, 1.7)
 texture = ExtResource("5_tefeu")
 
-[node name="Coin" parent="." unique_id=1350407393 instance=ExtResource("6_o6xl0")]
+[node name="Coin" type="Sprite2D" parent="CanvasLayer" unique_id=624079215]
+texture_filter = 1
+position = Vector2(91, 158)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("6_85g3d")
+
+[node name="Hearts" parent="CanvasLayer" unique_id=472509795 instance=ExtResource("7_ya4ey")]
+position = Vector2(168, 82)
+
+[node name="Coins" parent="CanvasLayer" unique_id=972049455 instance=ExtResource("7_ya4ey")]
+position = Vector2(168, 154)
+number = 0
+
+[node name="Coin" parent="." unique_id=1350407393 groups=["coins"] instance=ExtResource("6_o6xl0")]
 position = Vector2(652, 90)
+
+[node name="Area2D" parent="." unique_id=623938259 groups=["keys"] instance=ExtResource("7_tipki")]
+position = Vector2(478.99997, -160.99998)
+script = ExtResource("8_85g3d")
+
+[node name="GameManager" type="Node2D" parent="." unique_id=1141301354]
+unique_name_in_owner = true
+script = ExtResource("11_eb6dy")
 
 [connection signal="body_entered" from="Character" to="Character" method="squish_"]
 [connection signal="body_exited" from="Character" to="Character" method="ground_left"]
