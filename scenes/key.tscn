@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://ma4mljghlimf"]
 
+[ext_resource type="Script" uid="uid://cty7bu1t7unyf" path="res://scripts/bob.gd" id="1_fttkb"]
 [ext_resource type="Texture2D" uid="uid://es6vwvb1y0jd" path="res://sprites/default/PNG/Default/tile_key.png" id="1_yk2u2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fttkb"]
 radius = 21.0
 
-[node name="key" type="Area2D" unique_id=623938259]
+[node name="Key" type="Area2D" unique_id=623938259 groups=["keys"]]
 scale = Vector2(1.465, 1.465)
+script = ExtResource("1_fttkb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1360312829]
 texture_filter = 1
@@ -14,4 +16,5 @@ texture = ExtResource("1_yk2u2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1416173096]
 shape = SubResource("CircleShape2D_fttkb")
-disabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

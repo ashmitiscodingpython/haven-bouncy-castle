@@ -11,13 +11,17 @@ func _process(delta: float) -> void:
 	time += delta
 	if not get_parent().name == "CanvasLayer":
 		position = pos + Vector2(0, sin(time * 2) * 5)
-	else:
+	elif is_in_group("coins"):
 		position += (Vector2(91, 158) - position) / 10
 		var distance = position.distance_to(Vector2(91, 158))
 		modulate = Color(1, 1, 1, (distance + 10) / initial_distance)
 		if distance < 50:
-			%GameManager.coins += 1
+			get_tree().root.get_node("Node2D/GameManager").coins += 1
 			queue_free()
+	elif is_in_group("keys"):
+		position += (Vector2(1105, 42) - position) / 10
+		if position.distance_to(Vector2(1105, 42)) < 50:
+			%GameManager.key_collected = true
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and get_parent().name != "CanvasLayer":
